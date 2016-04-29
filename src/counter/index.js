@@ -1,30 +1,19 @@
-import expect from 'expect';
+import { createStore } from 'redux';
 
-const counter = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-    default:
-      return state;
-  }
+import { counter } from './reducer';
+
+const store = createStore(counter);
+
+// Initial state = 0
+const render = () => {
+  document.getElementById('main-app').innerText = store.getState();
 }
 
-expect(
-  counter(0, { type: 'INCREMENT' })
-).toEqual(1);
+// Subscribe rendre function to store to catch updates
+store.subscribe(render);
+render(); // render once to render initial state
 
-expect(
-  counter(1, { type: 'INCREMENT' })
-).toEqual(2);
-
-expect(
-  counter(2, { type: 'DECREMENT' })
-).toEqual(1);
-
-expect(
-  counter(1, { type: 'SOMETHING_ELSE' })
-).toEqual(1);
-
-console.log('Test passed!');
+// Dispatch to change application state
+document.addEventListener('click', () => {
+  store.dispatch({ type: 'INCREMENT' });
+});
