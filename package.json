@@ -17,6 +17,7 @@
     "webpack": "^1.13.0"
   },
   "dependencies": {
+    "expect": "^1.18.0",
     "redux": "^3.5.2"
   }
 }
