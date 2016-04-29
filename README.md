@@ -23,7 +23,7 @@ The `actions` and `reducers` folders contain all of the associated actions and r
 It is good practice to keep your store configuration in a separate file (`configureStore.js`) in case you later want to add middleware to your application.
 
 ### Additional Libraries
-`deep-freeze` and `expect` are used to provide tests for the reducers and enforce an immutable environment. `expect` provides improved assertion-testing with a very simple syntax: `expect(foo(before)).toEqual(after);`. `deep-freeze` is used to 'freeze' an object and prevent any mutations from taking place. This is extremely useful to ensure that the objects of the application do not mutate the state in the reducer, as Redux has a strict intolerance towards mutations.
+`deep-freeze` and `expect` are used to provide tests for the reducers and enforce an immutable environment. `expect` provides improved assertion testing with a very simple syntax: `expect(foo(before)).toEqual(after);`. `deep-freeze` is used to 'freeze' an object and prevent any mutations from taking place. This is extremely useful to ensure that the objects of the application do not mutate the state in the reducer, as Redux has a strict intolerance towards mutations.
 
 ### Table of Contents
 `todo`
