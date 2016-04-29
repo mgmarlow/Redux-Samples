@@ -1,7 +1,7 @@
 import expect from 'expect';
 import deepFreeze from 'deep-freeze';
 
-const todos = (state = [], actions) => {
+const todos = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return [
@@ -43,3 +43,4 @@ const testAddTodo = () => {
 }
 
 testAddTodo();
+console.log('Tests passed!')
