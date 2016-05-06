@@ -26,5 +26,24 @@ It is good practice to keep your store configuration in a separate file (`config
 #### `deep-freeze` and `expect`
 `deep-freeze` and `expect` are used to provide tests for the reducers and enforce an immutable environment. `expect` provides improved assertion testing with a very simple syntax: `expect(foo(before)).toEqual(after);`. `deep-freeze` is used to 'freeze' an object and prevent any mutations from taking place. This is extremely useful to ensure that the objects of the application do not mutate the state in the reducer, as Redux has a strict intolerance towards mutations.
 
-### Table of Contents
-`todo`
+### Projects
+Ranked in order of complexity.
+
+Each project contains its own Webpack configuration file to make it easy to modify individual examples.
+
+#### counter
+The simplest application of the lot, demonstrating how to compose a simple reducer and handle a centralized store. This application only makes use of the `redux` library.
+
+#### counter-react
+The counter example expanded to incorporate the React front-end library with additional UI functionality.
+
+#### preventMutations
+Not a project per se, but rather a resource that shows how to avoid mutating objects and arrays in JavaScript. Since Redux does not work properly with mutations, useful methods like `Object.assign()` and `Array.concat()` are used to avoid mutating the state of an application, particularly in reducers.
+
+#### simple-todo-app
+A todo-list application that doesn't use the `react-redux` library, instead making use of bloated components that access a global store. Demonstrates why the `react-redux` library is useful, as including a `Provider` component to handle state transitions between components is very useful for reducing the complexity of individual components. This project contains a number of tests for the reducer than can be carried over to the more complete application, but were omitted due to redundancy. For an application that is more similar to production uses, see the `complete-todo-app`.
+
+#### complete-todo-app
+A todo-list application that includes all of the necessary components for building large projects with React + Redux. Utilizes `react-redux` library for the `Provider` component that passes the Redux store implicitly to all components. This is made possible with the `connect()` method from the same library, connecting a container's state and dispatch methods with a presentational component.
+
+This project demonstrates the structure for an entire React/Redux project (albeit, a simple one). Additional refactoring can be done to separate the actions from the other components.
