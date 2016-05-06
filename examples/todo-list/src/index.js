@@ -6,7 +6,10 @@ import todoApp from './reducer';
 
 const store = createStore(todoApp);
 
-const FilterLink = ({ filter, children }) => {
+const FilterLink = ({ filter, children, currentFilter }) => {
+  if (filter === currentFilter) {
+    return <span>{children}</span>;
+  }
   return (
     <a href='#'
       onClick={e => {
@@ -36,7 +39,8 @@ const getVisibleTodos = (todos, filter) => {
 let nextTodoId = 0;
 class TodoApp extends React.Component {
   render () {
-    const visibleTodos = getVisibleTodos(this.props.todos, this.props.visibilityFilter);
+    const { todos, visibilityFilter } = this.props;
+    const visibleTodos = getVisibleTodos(todos, visibilityFilter);
     return (
       <div>
         <input ref={node => {
@@ -71,11 +75,11 @@ class TodoApp extends React.Component {
         <p>
           Show:
           {' '}
-          <FilterLink filter='SHOW_ALL'> All </FilterLink>
+          <FilterLink filter='SHOW_ALL' currentFilter={visibilityFilter}> All </FilterLink>
           {' '}
-          <FilterLink filter='SHOW_ACTIVE'> Active </FilterLink>
+          <FilterLink filter='SHOW_ACTIVE' currentFilter={visibilityFilter}> Active </FilterLink>
           {' '}
-          <FilterLink filter='SHOW_COMPLETED'> Completed</FilterLink>
+          <FilterLink filter='SHOW_COMPLETED' currentFilter={visibilityFilter}> Completed</FilterLink>
         </p>
       </div>
     );

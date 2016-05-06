@@ -75,7 +75,15 @@
 	var FilterLink = function FilterLink(_ref) {
 	  var filter = _ref.filter;
 	  var children = _ref.children;
+	  var currentFilter = _ref.currentFilter;
 
+	  if (filter === currentFilter) {
+	    return _react2.default.createElement(
+	      'span',
+	      null,
+	      children
+	    );
+	  }
 	  return _react2.default.createElement(
 	    'a',
 	    { href: '#',
@@ -122,7 +130,11 @@
 	    value: function render() {
 	      var _this2 = this;
 
-	      var visibleTodos = getVisibleTodos(this.props.todos, this.props.visibilityFilter);
+	      var _props = this.props;
+	      var todos = _props.todos;
+	      var visibilityFilter = _props.visibilityFilter;
+
+	      var visibleTodos = getVisibleTodos(todos, visibilityFilter);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -168,19 +180,19 @@
 	          ' ',
 	          _react2.default.createElement(
 	            FilterLink,
-	            { filter: 'SHOW_ALL' },
+	            { filter: 'SHOW_ALL', currentFilter: visibilityFilter },
 	            ' All '
 	          ),
 	          ' ',
 	          _react2.default.createElement(
 	            FilterLink,
-	            { filter: 'SHOW_ACTIVE' },
+	            { filter: 'SHOW_ACTIVE', currentFilter: visibilityFilter },
 	            ' Active '
 	          ),
 	          ' ',
 	          _react2.default.createElement(
 	            FilterLink,
-	            { filter: 'SHOW_COMPLETED' },
+	            { filter: 'SHOW_COMPLETED', currentFilter: visibilityFilter },
 	            ' Completed'
 	          )
 	        )
