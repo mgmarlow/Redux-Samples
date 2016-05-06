@@ -85,6 +85,15 @@
 	        text: action.text,
 	        completed: false
 	      }]);
+	    case 'TOGGLE_TODO':
+	      return state.map(function (todo) {
+	        if (todo.id !== action.id) {
+	          return todo;
+	        }
+	        return Object.assign({}, todo, {
+	          completed: !todo.completed
+	        });
+	      });
 	    default:
 	      return state;
 	  }
@@ -112,7 +121,38 @@
 	  (0, _expect2.default)(todos(stateBefore, action)).toEqual(stateAfter);
 	};
 
+	var testToggleTodo = function testToggleTodo() {
+	  var stateBefore = [{
+	    id: 0,
+	    text: 'Learn Redux',
+	    completed: false
+	  }, {
+	    id: 1,
+	    text: 'Go Shopping',
+	    completed: false
+	  }];
+	  var action = {
+	    type: 'TOGGLE_TODO',
+	    id: 1
+	  };
+	  var stateAfter = [{
+	    id: 0,
+	    text: 'Learn Redux',
+	    completed: false
+	  }, {
+	    id: 1,
+	    text: 'Go Shopping',
+	    completed: true
+	  }];
+
+	  (0, _deepFreeze2.default)(stateBefore);
+	  (0, _deepFreeze2.default)(action);
+
+	  (0, _expect2.default)(todos(stateBefore, action)).toEqual(stateAfter);
+	};
+
 	testAddTodo();
+	testToggleTodo();
 	console.log('Tests passed!');
 
 /***/ },
