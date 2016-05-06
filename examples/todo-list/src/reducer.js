@@ -115,4 +115,4 @@ const testToggleTodo = () => {
 
 testAddTodo();
 testToggleTodo();
-console.log('Tests passed!')
+// console.log('Tests passed!');
